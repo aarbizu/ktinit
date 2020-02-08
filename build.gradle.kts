@@ -20,7 +20,7 @@ object Properties {
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.3.60"     // I would like to reference a const here but that doesn't work from the command line even tho intellij is ok with it
+    id("org.jetbrains.kotlin.jvm") version "1.3.61"     // I would like to reference a const here but that doesn't work from the command line even tho intellij is ok with it
 
     // Apply the application plugin to add support for building a CLI application.
     application
