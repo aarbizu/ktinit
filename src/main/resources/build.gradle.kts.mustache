@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.3.72"
+    id("org.jetbrains.kotlin.jvm") version "1.4.21"
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -42,7 +42,7 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 application {
     // Define the main class for the application.
-    mainClassName = "{{mainClass}}"
+    mainClass.set("{{mainClass}}")
 }
 
 spotless {
