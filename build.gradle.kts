@@ -49,10 +49,10 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
     // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Properties.kotlin_version}")
 
     // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:${Properties.kotlin_version}")
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${Properties.jupiter_version}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Properties.jupiter_version}")
@@ -77,7 +77,12 @@ dependencies {
 
 group = "com.pk"
 version = "0.0.2"
-java.sourceCompatibility = JavaVersion.VERSION_14
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
+}
+
 
 application {
     // Define the main class for the application
@@ -87,6 +92,17 @@ application {
 spotless {
     kotlin {
         ktlint()
+    }
+}
+
+tasks {
+
+    compileKotlin {
+        kotlinOptions.jvmTarget = "14"
+    }
+
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "14"
     }
 }
 
