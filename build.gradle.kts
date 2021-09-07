@@ -3,24 +3,24 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 object Properties {
-    const val kotlin_version = "1.4.21"
-    const val mustache_version = "0.9.7"
-    const val okhttp_version = "4.9.0"
-    const val gson_version = "2.8.6"
-    const val guava_version = "30.1-jre"
+    const val kotlin_version = "1.5.30"
+    const val mustache_version = "0.9.10"
+    const val okhttp_version = "4.7.2"
+    const val gson_version = "2.8.8"
+    const val guava_version = "30.1.1-jre"
     const val system_rules_version = "1.19.0"
-    const val truth_version = "1.1.2"
-    const val jupiter_version = "5.7.0"
+    const val truth_version = "1.1.3"
+    const val jupiter_version = "5.6.2"
     const val argparser_version = "2.0.7"
-    const val moshi_version = "1.11.0"
+    const val moshi_version = "1.12.0"
     const val slf4j_version = "1.7.30"
-    const val json_path_version = "2.5.0"
+    const val json_path_version = "2.6.0"
     const val zt_exec_version = "1.12"
 }
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.21"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
+    kotlin("jvm") version "1.5.30"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -29,14 +29,14 @@ plugins {
     idea
 
     // spotless
-    id("com.diffplug.spotless") version "5.9.0"
+    id("com.diffplug.spotless") version "5.15.0"
 
     // this plugin helps us publish to maven repositories (like github packages)
     `maven-publish`
 
     jacoco
 
-    id("com.github.ben-manes.versions") version "0.36.0"
+    id("com.github.ben-manes.versions") version "0.39.0"
 }
 
 repositories {
@@ -49,10 +49,10 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
     // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Properties.kotlin_version}")
 
     // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:${Properties.kotlin_version}")
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${Properties.jupiter_version}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Properties.jupiter_version}")
@@ -77,7 +77,12 @@ dependencies {
 
 group = "com.pk"
 version = "0.0.2"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
+}
+
 
 application {
     // Define the main class for the application.
@@ -87,6 +92,17 @@ application {
 spotless {
     kotlin {
         ktlint()
+    }
+}
+
+tasks {
+
+    compileKotlin {
+        kotlinOptions.jvmTarget = "14"
+    }
+
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "14"
     }
 }
 
