@@ -40,15 +40,13 @@ plugins {
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    jcenter()
+    maven("https://jitpack.io")
+    mavenCentral()
 }
 
 dependencies {
     // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-
-    // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Properties.kotlin_version}")
 
     // Use the Kotlin JUnit integration.

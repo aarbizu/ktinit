@@ -21,8 +21,8 @@ fun main(args: Array<String>) {{^noArgs}}= mainBody {{/noArgs}}{
             epilogue = "Sample usage: {{artifactId}} --foo --bar=swag"
         )
     ).parseInto(::SimpleArgs).run {
-            if (foo) println("Foo is set.")
-            println("bar is $bar.")
+        if (foo) println("Foo is set.")
+        println("bar is $bar.")
     }
     {{/noArgs}}
     println("Hello, World!")
