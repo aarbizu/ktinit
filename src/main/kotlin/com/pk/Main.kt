@@ -1,7 +1,6 @@
 package com.pk
 
 import com.google.common.base.CaseFormat
-import com.google.common.io.Files
 import com.pk.Option.ARTIFACT_ID
 import com.pk.Option.DEPS
 import com.pk.Option.GROUP_ID
@@ -12,6 +11,7 @@ import com.xenomachina.argparser.DefaultHelpFormatter
 import com.xenomachina.argparser.default
 import com.xenomachina.argparser.mainBody
 import java.io.File
+import kotlin.io.path.createTempDirectory
 
 class MyArgs(parser: ArgParser) {
     val currentDir by parser.flagging(
@@ -75,7 +75,7 @@ fun main(args: Array<String>) = mainBody {
             groupId = groupId,
             artifactId = artifactId,
             overlays = buildOverlaysForSimpleProject(inputs, deps = dependencies.union(defaultDependencies)),
-            location = if (currentDir) File(System.getProperty("user.dir")) else Files.createTempDir()
+            location = if (currentDir) File(System.getProperty("user.dir")) else createTempDirectory().toFile()
         )
 
         KtGradleProject(projectParams).create()
@@ -89,7 +89,7 @@ fun main(args: Array<String>) = mainBody {
 data class ProjectParams(
     val groupId: String,
     val artifactId: String,
-    val location: File = Files.createTempDir(),
+    val location: File = createTempDirectory().toFile(),
     val overlays: List<Overlay>
 )
 

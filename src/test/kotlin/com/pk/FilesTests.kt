@@ -4,6 +4,7 @@ import com.google.common.io.Files
 import org.junit.Assert.assertTrue
 import org.junit.jupiter.api.Test
 import java.io.File
+import kotlin.io.path.createTempDirectory
 
 class FilesTests {
 
@@ -18,7 +19,7 @@ class FilesTests {
 
     @Test
     fun copyResourceToFile() {
-        val tmp = Files.createTempDir()
+        val tmp = createTempDirectory().toFile()
         copyResourceToDir("gradlew", tmp)
         val gradlew = File(tmp, "gradlew")
         assertTrue(gradlew.exists())
