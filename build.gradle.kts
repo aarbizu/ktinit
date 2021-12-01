@@ -3,7 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 object Properties {
-    const val kotlin_version = "1.5.30"
+    const val kotlin_version = "1.6.0"
     const val mustache_version = "0.9.10"
     const val okhttp_version = "4.7.2"
     const val gson_version = "2.8.8"
@@ -20,7 +20,7 @@ object Properties {
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.5.30"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
+    kotlin("jvm") version "1.6.0"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
 
     // Apply the application plugin to add support for building a CLI application.
     application
