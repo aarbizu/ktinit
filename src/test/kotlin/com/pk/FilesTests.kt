@@ -12,7 +12,7 @@ class FilesTests {
     fun testLs() {
         val dir = "/tmp"
         val traverser = Files.fileTraverser()
-        for (file in traverser.breadthFirst(File(dir))) {
+        traverser.breadthFirst(File(dir)).forEach { file ->
             println(file.absolutePath)
         }
     }
