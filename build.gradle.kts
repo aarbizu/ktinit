@@ -5,7 +5,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 object Properties {
     const val kotlin_version = "1.6.10"
     const val mustache_version = "0.9.10"
-    const val okhttp_version = "4.7.2"
+    const val okhttp_version = "4.9.3"
     const val gson_version = "2.9.0"
     const val guava_version = "31.1-jre"
     const val system_rules_version = "1.19.0"
@@ -13,6 +13,7 @@ object Properties {
     const val jupiter_version = "5.8.2"
     const val argparser_version = "2.0.7"
     const val moshi_version = "1.13.0"
+    const val slf4j_version = "1.7.36"
     const val json_path_version = "2.7.0"
     const val zt_exec_version = "1.12"
 }
