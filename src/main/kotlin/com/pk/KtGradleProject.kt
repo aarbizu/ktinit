@@ -9,6 +9,8 @@ import java.io.File
 import java.io.StringReader
 import kotlin.system.exitProcess
 
+private const val EXIT_CODE_ERROR = 1
+
 class KtGradleProject(private val params: ProjectParams) {
 
     fun create() {

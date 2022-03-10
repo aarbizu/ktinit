@@ -1,7 +1,5 @@
 package com.pk
 
-import junit.framework.TestCase.assertTrue
-import junit.framework.TestCase.fail
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
