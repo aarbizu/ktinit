@@ -3,15 +3,15 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 object Properties {
-    const val kotlin_version = "1.6.10"
+    const val kotlin_version = "1.7.21"
     const val mustache_version = "0.9.10"
     const val okhttp_version = "4.9.3"
     const val gson_version = "2.9.0"
     const val guava_version = "31.1-jre"
     const val system_rules_version = "1.19.0"
     const val truth_version = "1.1.3"
-    const val jupiter_version = "5.8.2"
-    const val argparser_version = "2.0.7"
+    const val jupiter_version = "5.9.0"
+    const val kotlinx_cli_version = "0.3.5"
     const val moshi_version = "1.13.0"
     const val slf4j_version = "1.7.36"
     const val json_path_version = "2.7.0"
@@ -20,7 +20,7 @@ object Properties {
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.6.10"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
+    kotlin("jvm") version "1.7.21"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -29,14 +29,14 @@ plugins {
     idea
 
     // spotless
-    id("com.diffplug.spotless") version "6.3.0"
+    id("com.diffplug.spotless") version "6.12.0"
 
     // this plugin helps us publish to maven repositories (like GitHub packages)
     `maven-publish`
 
     jacoco
 
-    id("com.github.ben-manes.versions") version "0.42.0"
+    id("com.github.ben-manes.versions") version "0.44.0"
 }
 
 repositories {
@@ -56,7 +56,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Properties.jupiter_version}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${Properties.jupiter_version}")
 
-    implementation("com.xenomachina:kotlin-argparser:${Properties.argparser_version}")
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:${Properties.kotlinx_cli_version}")
     implementation("com.squareup.moshi:moshi:${Properties.moshi_version}")
     implementation("com.squareup.moshi:moshi-kotlin:${Properties.moshi_version}")
     implementation("org.slf4j:slf4j-api:${Properties.slf4j_version}")

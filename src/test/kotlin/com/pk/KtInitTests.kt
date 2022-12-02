@@ -24,7 +24,7 @@ class KtInitTests {
                 inputs,
                 listOf(
                     Dependency("implementation", "com.google.guava", "guava", pinnedVersion = "30.1-jre"),
-                    Dependency("implementation", "com.xenomachina", "kotlin-argparser"),
+                    Dependency("implementation", "org.jetbrains.kotlinx", "kotlinx-cli"),
                     Dependency("testImplementation", "com.google.truth", "truth"),
                     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-engine"),
                     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
