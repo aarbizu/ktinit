@@ -1,29 +1,24 @@
 package {{groupId}}.{{artifactId}}
 
 {{^noArgs}}
-import com.xenomachina.argparser.ArgParser
-import com.xenomachina.argparser.DefaultHelpFormatter
-import com.xenomachina.argparser.default
-import com.xenomachina.argparser.mainBody
-
-class SimpleArgs(parser: ArgParser) {
-    val foo by parser.flagging("-f", "--foo", help = "set flag foo")
-    val bar by parser.storing("-b", "--bar", help = "set value for bar").default("baz")
-}
+import kotlinx.cli.ArgParser
+import kotlinx.cli.ArgType
+import kotlinx.cli.default
 
 {{/noArgs}}
-fun main(args: Array<String>) {{^noArgs}}= mainBody {{/noArgs}}{
+fun main(args: Array<String>) {
     {{^noArgs}}
-    ArgParser(
-        args,
-        helpFormatter = DefaultHelpFormatter(
-            prologue = "[{{artifactId}}]",
-            epilogue = "Sample usage: {{artifactId}} --foo --bar=swag"
-        )
-    ).parseInto(::SimpleArgs).run {
-        if (foo) println("Foo is set.")
-        println("bar is $bar.")
-    }
+    val parser = ArgParser("example")
+    val foo by parser
+        .option(ArgType.Boolean, shortName = "f", fullName = "--foo", description = "set foo flag")
+        .default(false)
+    val bar by parser
+        .option(ArgType.String, shortName = "b", fullName = "--bar", description = "set value for bar")
+        .default("baz")
+    parser.parse(args)
+
+    if (foo) println("Foo is set.")
+    println("bar is $bar.")
     {{/noArgs}}
     println("Hello, World!")
 }
