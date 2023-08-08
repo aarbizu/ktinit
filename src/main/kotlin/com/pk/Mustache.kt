@@ -34,7 +34,7 @@ object Mustache {
                         val wrapper = super.getWrapper(name, scopes)
                         if (wrapper is MissingWrapper) {
                             throw MustacheException(
-                                "$name not found in $tc. current context: $scopes"
+                                "$name not found in $tc. current context: $scopes",
                             )
                         }
                         return wrapper
