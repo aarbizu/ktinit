@@ -3,24 +3,24 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 object Properties {
-    const val kotlin_version = "1.7.21"
+    const val kotlin_version = "1.9.0"
     const val mustache_version = "0.9.10"
     const val okhttp_version = "4.9.3"
-    const val gson_version = "2.9.0"
-    const val guava_version = "31.1-jre"
+    const val gson_version = "2.10.1"
+    const val guava_version = "32.1.2-jre"
     const val system_rules_version = "1.19.0"
-    const val truth_version = "1.1.3"
-    const val jupiter_version = "5.9.0"
+    const val truth_version = "1.1.5"
+    const val jupiter_version = "5.10.0"
     const val kotlinx_cli_version = "0.3.5"
-    const val moshi_version = "1.13.0"
-    const val slf4j_version = "1.7.36"
-    const val json_path_version = "2.7.0"
+    const val moshi_version = "1.15.0"
+    const val slf4j_version = "2.0.7"
+    const val json_path_version = "2.8.0"
     const val zt_exec_version = "1.12"
 }
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.7.21"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
+    kotlin("jvm") version "1.9.0"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -29,14 +29,14 @@ plugins {
     idea
 
     // spotless
-    id("com.diffplug.spotless") version "6.12.0"
+    id("com.diffplug.spotless") version "6.20.0"
 
     // this plugin helps us publish to maven repositories (like GitHub packages)
     `maven-publish`
 
     jacoco
 
-    id("com.github.ben-manes.versions") version "0.44.0"
+    id("com.github.ben-manes.versions") version "0.47.0"
 }
 
 repositories {

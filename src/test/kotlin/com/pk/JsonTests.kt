@@ -30,7 +30,7 @@ class JsonTests {
     fun listOfDeps() {
         val deps = listOf(
             Dependency(group = "com.google.guava", artifact = "guava"),
-            Dependency(group = "com.google.truth", artifact = "truth")
+            Dependency(group = "com.google.truth", artifact = "truth"),
         )
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())

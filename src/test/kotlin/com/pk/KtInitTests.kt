@@ -15,7 +15,7 @@ class KtInitTests {
         val inputs = mutableMapOf<Option, Any>(
             Option.GROUP_ID to groupId,
             Option.ARTIFACT_ID to artifactId,
-            Option.NO_ARG_PARSING to noArgParsing
+            Option.NO_ARG_PARSING to noArgParsing,
         )
         val params = ProjectParams(
             groupId = groupId,
@@ -28,9 +28,9 @@ class KtInitTests {
                     Dependency("testImplementation", "com.google.truth", "truth"),
                     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-engine"),
                     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
-                    Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params")
-                )
-            )
+                    Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
+                ),
+            ),
         )
 
         KtGradleProject(params).create()
@@ -44,7 +44,7 @@ class KtInitTests {
         val inputs = mutableMapOf<Option, Any>(
             Option.GROUP_ID to groupId,
             Option.ARTIFACT_ID to artifactId,
-            Option.NO_ARG_PARSING to noArgParsing
+            Option.NO_ARG_PARSING to noArgParsing,
         )
         val params = ProjectParams(
             groupId = groupId,
@@ -56,9 +56,9 @@ class KtInitTests {
                     Dependency("testImplementation", "com.google.truth", "truth"),
                     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-engine"),
                     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
-                    Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params")
-                )
-            )
+                    Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
+                ),
+            ),
 
         )
 
@@ -92,7 +92,7 @@ class KtInitTests {
             "groupId" to "com.pk",
             "artifactId" to "testing",
             "mainClass" to "com.pk.MainKt",
-            "deps" to dependencies()
+            "deps" to dependencies(),
         )
         val merged = Mustache.merge(StringReader(template), ctx)
         println("merged = $merged")

@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
             ArgType.String,
             shortName = "d",
             fullName = "dep",
-            description = "provide additional dependencies in the format <groupId>:<artifactId>[:version]"
+            description = "provide additional dependencies in the format <groupId>:<artifactId>[:version]",
         )
         .multiple()
 
@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
     val inputs = mutableMapOf<Option, Any>(
         GROUP_ID to groupId,
         ARTIFACT_ID to artifactIdNormalized,
-        NO_ARG_PARSING to noArgs
+        NO_ARG_PARSING to noArgs,
     )
 
     val defaultDependencies = dependencies().toMutableList()
@@ -63,7 +63,7 @@ fun main(args: Array<String>) {
         groupId = groupId,
         artifactId = artifactId,
         overlays = buildOverlaysForSimpleProject(inputs, deps = parseDependencies(dependencies).union(defaultDependencies)),
-        location = if (currentDir) File(System.getProperty("user.dir")) else createTempDirectory().toFile()
+        location = if (currentDir) File(System.getProperty("user.dir")) else createTempDirectory().toFile(),
     )
 
     KtGradleProject(projectParams).create()
@@ -85,7 +85,7 @@ data class ProjectParams(
     val groupId: String,
     val artifactId: String,
     val location: File = createTempDirectory().toFile(),
-    val overlays: List<Overlay>
+    val overlays: List<Overlay>,
 )
 
 fun dependencies(): List<Dependency> = listOf(
@@ -100,12 +100,12 @@ fun dependencies(): List<Dependency> = listOf(
     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
     Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
     Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-console"),
-    Dependency("implementation", "org.jetbrains.kotlinx", "kotlinx-cli")
+    Dependency("implementation", "org.jetbrains.kotlinx", "kotlinx-cli"),
 )
 
 fun buildOverlaysForSimpleProject(
     inputs: MutableMap<Option, Any>,
-    deps: Iterable<Dependency> = dependencies()
+    deps: Iterable<Dependency> = dependencies(),
 ): List<Overlay> {
     // build ctx to pass to Mustache
     inputs[MAIN_CLASS] = "${inputs[GROUP_ID]}.${inputs[ARTIFACT_ID]}.MainKt"
@@ -121,7 +121,7 @@ fun buildOverlaysForSimpleProject(
         Overlay("README.md.mustache", "README.md", ctx),
         Overlay("gitignore.mustache", ".gitignore", ctx),
         Overlay("Main.mustache", "src/main/kotlin/$pkg/Main.kt", ctx),
-        Overlay("SillyTest.kt.mustache", "src/test/kotlin/$pkg/SillyTest.kt", ctx)
+        Overlay("SillyTest.kt.mustache", "src/test/kotlin/$pkg/SillyTest.kt", ctx),
     )
 }
 
@@ -131,5 +131,5 @@ enum class Option(val templateName: String) {
     ARTIFACT_ID("artifactId"),
     MAIN_CLASS("mainClass"),
     DEPS("deps"),
-    NO_ARG_PARSING("noArgs");
+    NO_ARG_PARSING("noArgs"),
 }

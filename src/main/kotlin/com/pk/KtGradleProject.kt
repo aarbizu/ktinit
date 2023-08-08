@@ -93,14 +93,14 @@ class KtGradleProject(private val params: ProjectParams) {
 data class Overlay(
     val template: String,
     val dest: String,
-    val ctx: Map<String, Any>
+    val ctx: Map<String, Any>,
 )
 
 data class Dependency(
     val scope: String = "implementation",
     val group: String,
     val artifact: String,
-    val pinnedVersion: String = ""
+    val pinnedVersion: String = "",
 ) {
     private val version: String by lazy {
         pinnedVersion.ifEmpty {
