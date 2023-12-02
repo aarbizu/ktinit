@@ -3,24 +3,24 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 object Properties {
-    const val kotlin_version = "1.9.0"
-    const val mustache_version = "0.9.10"
+    const val kotlin_version = "1.9.10"
+    const val mustache_version = "0.9.11"
     const val okhttp_version = "4.9.3"
     const val gson_version = "2.10.1"
-    const val guava_version = "32.1.2-jre"
+    const val guava_version = "32.1.3-jre"
     const val system_rules_version = "1.19.0"
     const val truth_version = "1.1.5"
-    const val jupiter_version = "5.10.0"
-    const val kotlinx_cli_version = "0.3.5"
+    const val jupiter_version = "5.10.1"
+    const val kotlinx_cli_version = "0.3.6"
     const val moshi_version = "1.15.0"
-    const val slf4j_version = "2.0.7"
+    const val slf4j_version = "2.0.9"
     const val json_path_version = "2.8.0"
     const val zt_exec_version = "1.12"
 }
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.9.0"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
+    kotlin("jvm") version "1.9.10"     // I would like to reference a const here but that doesn't work from the command line even tho Intellij is OK with it
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -29,14 +29,14 @@ plugins {
     idea
 
     // spotless
-    id("com.diffplug.spotless") version "6.20.0"
+    id("com.diffplug.spotless") version "6.23.2"
 
     // this plugin helps us publish to maven repositories (like GitHub packages)
     `maven-publish`
 
     jacoco
 
-    id("com.github.ben-manes.versions") version "0.47.0"
+    id("com.github.ben-manes.versions") version "0.50.0"
 }
 
 repositories {
@@ -76,11 +76,9 @@ dependencies {
 group = "com.pk"
 version = "0.0.2"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_14
-    targetCompatibility = JavaVersion.VERSION_14
+kotlin {
+    jvmToolchain(17)
 }
-
 
 application {
     // Define the main class for the application.
@@ -96,11 +94,11 @@ spotless {
 tasks {
 
     compileKotlin {
-        kotlinOptions.jvmTarget = "14"
+        kotlinOptions.jvmTarget = "17"
     }
 
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "14"
+        kotlinOptions.jvmTarget = "17"
     }
 }
 
@@ -126,7 +124,7 @@ publishing {
         // easier to debug with ./gradlew publishKtinitPublicationToInternalRepository
         maven {
             name = "internal"
-            url = uri("$buildDir/repos/internal")
+            url = uri("${layout.buildDirectory}/repos/internal")
         }
     }
     publications {

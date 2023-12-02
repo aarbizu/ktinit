@@ -8,13 +8,13 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.junit.jupiter.api.Test
 
 class JsonTests {
-
     @Test
     fun moshi() {
         val dependency = Dependency(scope = "implementation", group = "com.google.guava", artifact = "guava")
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+        val moshi =
+            Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
         val adapter = moshi.adapter(Dependency::class.java)
 
         val json = adapter.toJson(dependency)
@@ -28,24 +28,27 @@ class JsonTests {
 
     @Test
     fun listOfDeps() {
-        val deps = listOf(
-            Dependency(group = "com.google.guava", artifact = "guava"),
-            Dependency(group = "com.google.truth", artifact = "truth"),
-        )
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+        val deps =
+            listOf(
+                Dependency(group = "com.google.guava", artifact = "guava"),
+                Dependency(group = "com.google.truth", artifact = "truth"),
+            )
+        val moshi =
+            Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
         val type = Types.newParameterizedType(List::class.java, Dependency::class.java)
         val adapter: JsonAdapter<List<Dependency>> = moshi.adapter(type)
         val json = adapter.toJson(deps)
         println("json = $json")
 
-        val input = """
+        val input =
+            """
             [
                 {"group":"com.google.guava","artifact":"guava"},
                 {"group":"com.google.truth","artifact":"truth"}
             ]
-        """.trimIndent()
+            """.trimIndent()
         val output = adapter.fromJson(input)
         println("output = $output")
     }

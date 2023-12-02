@@ -12,7 +12,6 @@ import kotlin.system.exitProcess
 private const val EXIT_CODE_ERROR = 1
 
 class KtGradleProject(private val params: ProjectParams) {
-
     fun create() {
         val proj = File(params.location, params.artifactId)
         val gradlew = setupGradleWrapper(proj)
@@ -47,7 +46,10 @@ class KtGradleProject(private val params: ProjectParams) {
         return gradlew
     }
 
-    private fun process(overlays: List<Overlay>, proj: File) {
+    private fun process(
+        overlays: List<Overlay>,
+        proj: File,
+    ) {
         overlays.forEach { overlay ->
             val template = readResource(overlay.template)
             val dest = File(proj, overlay.dest)
@@ -73,7 +75,11 @@ class KtGradleProject(private val params: ProjectParams) {
         exec(dir = proj, cmd = listOf("git", "commit", "-m", "'init'", "--allow-empty"))
     }
 
-    private fun exec(dir: File, cmd: List<String>, help: String = "") {
+    private fun exec(
+        dir: File,
+        cmd: List<String>,
+        help: String = "",
+    ) {
         try {
             ProcessExecutor()
                 .command(cmd)
@@ -115,7 +121,10 @@ data class Dependency(
 
 // not terribly exciting: just looks up the resource identified by fileName
 // and copies it to the given destination folder
-fun copyResourceToDir(fileName: String, destFolder: File) {
+fun copyResourceToDir(
+    fileName: String,
+    destFolder: File,
+) {
     destFolder.mkdirs()
     Preconditions.checkArgument(destFolder.exists() && destFolder.isDirectory, "could not mkdirs for $destFolder")
     val fileToMove = Resources.getResource(fileName)

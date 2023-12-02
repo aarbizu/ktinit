@@ -37,7 +37,12 @@ fun main(args: Array<String>) {
         .multiple()
 
     val noArgs by parser
-        .option(ArgType.Boolean, shortName = "n", fullName = "no-arg-parsing", description = "don't add command line arg parsing capabilities")
+        .option(
+            ArgType.Boolean,
+            shortName = "n",
+            fullName = "no-arg-parsing",
+            description = "don't add command line arg parsing capabilities",
+        )
         .default(false)
 
     parser.parse(args)
@@ -46,11 +51,12 @@ fun main(args: Array<String>) {
 
     val artifactIdNormalized = CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL, artifactId)
 
-    val inputs = mutableMapOf<Option, Any>(
-        GROUP_ID to groupId,
-        ARTIFACT_ID to artifactIdNormalized,
-        NO_ARG_PARSING to noArgs,
-    )
+    val inputs =
+        mutableMapOf<Option, Any>(
+            GROUP_ID to groupId,
+            ARTIFACT_ID to artifactIdNormalized,
+            NO_ARG_PARSING to noArgs,
+        )
 
     val defaultDependencies = dependencies().toMutableList()
 
@@ -59,17 +65,19 @@ fun main(args: Array<String>) {
         defaultDependencies.removeIf { dep -> dep.artifact == "kotlinx-cli" }
     }
 
-    val projectParams = ProjectParams(
-        groupId = groupId,
-        artifactId = artifactId,
-        overlays = buildOverlaysForSimpleProject(inputs, deps = parseDependencies(dependencies).union(defaultDependencies)),
-        location = if (currentDir) File(System.getProperty("user.dir")) else createTempDirectory().toFile(),
-    )
+    val projectParams =
+        ProjectParams(
+            groupId = groupId,
+            artifactId = artifactId,
+            overlays = buildOverlaysForSimpleProject(inputs, deps = parseDependencies(dependencies).union(defaultDependencies)),
+            location = if (currentDir) File(System.getProperty("user.dir")) else createTempDirectory().toFile(),
+        )
 
     KtGradleProject(projectParams).create()
 
     if (!currentDir) println("\nYou may use the project above or run `ktinit --help` to see more options.")
 }
+
 fun parseDependencies(deps: List<String>): List<Dependency> {
     return deps.map {
         val parts = it.split(":")
@@ -88,20 +96,21 @@ data class ProjectParams(
     val overlays: List<Overlay>,
 )
 
-fun dependencies(): List<Dependency> = listOf(
-    Dependency("implementation", "org.slf4j", "slf4j-api"),
-    Dependency("implementation", "org.slf4j", "slf4j-simple"),
-    Dependency("implementation", "com.squareup.okhttp3", "okhttp"),
-    Dependency("implementation", "com.google.code.gson", "gson"),
-    Dependency("implementation", "com.google.guava", "guava"),
-    Dependency("testImplementation", "com.github.stefanbirkner", "system-rules"),
-    Dependency("testImplementation", "com.google.truth", "truth"),
-    Dependency("testRuntimeOnly", "org.junit.jupiter", "junit-jupiter-engine"),
-    Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
-    Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
-    Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-console"),
-    Dependency("implementation", "org.jetbrains.kotlinx", "kotlinx-cli"),
-)
+fun dependencies(): List<Dependency> =
+    listOf(
+        Dependency("implementation", "org.slf4j", "slf4j-api"),
+        Dependency("implementation", "org.slf4j", "slf4j-simple"),
+        Dependency("implementation", "com.squareup.okhttp3", "okhttp"),
+        Dependency("implementation", "com.google.code.gson", "gson"),
+        Dependency("implementation", "com.google.guava", "guava"),
+        Dependency("testImplementation", "com.github.stefanbirkner", "system-rules"),
+        Dependency("testImplementation", "com.google.truth", "truth"),
+        Dependency("testRuntimeOnly", "org.junit.jupiter", "junit-jupiter-engine"),
+        Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
+        Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
+        Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-console"),
+        Dependency("implementation", "org.jetbrains.kotlinx", "kotlinx-cli"),
+    )
 
 fun buildOverlaysForSimpleProject(
     inputs: MutableMap<Option, Any>,
