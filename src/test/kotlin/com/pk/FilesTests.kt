@@ -7,7 +7,6 @@ import java.io.File
 import kotlin.io.path.createTempDirectory
 
 class FilesTests {
-
     @Test
     fun testLs() {
         val dir = "/tmp"

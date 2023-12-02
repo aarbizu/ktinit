@@ -7,10 +7,11 @@ class MavenVersion(groupId: String, artifactId: String) {
     private val url = "http://search.maven.org/solrsearch/select?q=g:$groupId+AND+a:$artifactId&rows=5&wt=json"
 
     fun getLatest(): String {
-        val req = Request.Builder()
-            .get()
-            .url(url)
-            .build()
+        val req =
+            Request.Builder()
+                .get()
+                .url(url)
+                .build()
         val resp = Http.exec(req)
         assert(resp.successful) { "req failed with ${resp.code}" }
 //        println(resp.body)

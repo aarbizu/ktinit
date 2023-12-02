@@ -14,7 +14,6 @@ import java.util.Arrays
  * tests for the `zt-exec` library
  */
 class ZtExecTests {
-
     @Test
     fun testExitCode() {
         val exit = ProcessExecutor().command("java", "-version").execute().exitValue
@@ -25,8 +24,9 @@ class ZtExecTests {
     fun testMissingBinary() {
         var exit = -1
         try {
-            exit = ProcessExecutor().command("lkasdjflsajf", "-version")
-                .execute().exitValue
+            exit =
+                ProcessExecutor().command("lkasdjflsajf", "-version")
+                    .execute().exitValue
             fail()
         } catch (e: ProcessInitException) {
             assertThat(exit, `is`(-1))
@@ -37,15 +37,17 @@ class ZtExecTests {
     @Test
     @Throws(Exception::class)
     fun testEnvironmentVars() {
-        val env = ProcessExecutor().command("env")
-            .environment("FOOBAR", "BAZ")
-            .readOutput(true)
-            .exitValueNormal()
-            .execute()
-            .outputUTF8()
-        val returnedEnv = Arrays.stream(env.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
-            .filter { s -> s.startsWith("FOOBAR=") }
-            .findFirst()
+        val env =
+            ProcessExecutor().command("env")
+                .environment("FOOBAR", "BAZ")
+                .readOutput(true)
+                .exitValueNormal()
+                .execute()
+                .outputUTF8()
+        val returnedEnv =
+            Arrays.stream(env.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+                .filter { s -> s.startsWith("FOOBAR=") }
+                .findFirst()
         assertTrue(returnedEnv.isPresent)
         assertThat(returnedEnv.get(), `is`("FOOBAR=BAZ"))
     }
