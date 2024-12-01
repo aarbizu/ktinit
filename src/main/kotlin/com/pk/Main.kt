@@ -131,6 +131,7 @@ fun buildOverlaysForSimpleProject(
         Overlay("gitignore.mustache", ".gitignore", ctx),
         Overlay("Main.mustache", "src/main/kotlin/$pkg/Main.kt", ctx),
         Overlay("SillyTest.kt.mustache", "src/test/kotlin/$pkg/SillyTest.kt", ctx),
+        Overlay("libs.versions.toml.mustache", "gradle/libs.versions.toml", ctx),
     )
 }
 

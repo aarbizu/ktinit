@@ -1,0 +1,61 @@
+[versions]
+jvm = "jvm"
+kotlin = "2.1.0"
+mustache = "0.9.14"
+okhttp = "4.12.0"
+gson = "2.11.0"
+guava = "33.3.1-jre"
+system_rules = "1.19.0"
+truth = "1.4.4"
+jupiter = "5.11.3"
+kotlinx_cli = "0.3.6"
+moshi = "1.15.1"
+slf4j = "2.0.16"
+json_path = "2.9.0"
+zt_exec = "1.12"
+spotless = "6.25.0"
+versions = "0.51.0"
+
+[libraries]
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+# kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+kotlinx-cli = { module = "org.jetbrains.kotlinx:kotlinx-cli", version.ref = "kotlinx_cli" }
+
+# slf4j
+slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
+
+# junit
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "jupiter" }
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "jupiter" }
+junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "jupiter" }
+
+# moshi
+moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+
+# google
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
+# miscellaneous
+jsonpath = { group = "com.jayway.jsonpath", name = "json-path", version.ref = "json_path" }
+zeroturnaround = { group = "org.zeroturnaround", name = "zt-exec", version.ref = "zt_exec" }
+mustache = { group = "com.github.spullara.mustache.java", name = "compiler", version.ref = "mustache" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+system_rules = { group = "com.github.stefanbirkner", name = "system-rules", version.ref = "system_rules" }
+
+
+[bundles]
+junit-jupiter = ["junit-jupiter-api", "junit-jupiter-engine", "junit-jupiter-params"]
+moshi = ["moshi", "moshi-kotlin"]
+slf4j = ["slf4j-api", "slf4j-simple"]
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

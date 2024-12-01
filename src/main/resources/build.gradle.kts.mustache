@@ -1,8 +1,11 @@
-import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.9.10"
+    kotlin(libs.versions.jvm.get()) version libs.versions.kotlin.get()
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -11,9 +14,10 @@ plugins {
     idea
 
     // spotless
-    id("com.diffplug.spotless") version "6.23.2"
+    alias(libs.plugins.spotless)
 
-    id("com.github.ben-manes.versions") version "0.50.0"
+    // versions
+    alias(libs.plugins.versions)
 }
 
 repositories {
@@ -23,12 +27,12 @@ repositories {
 
 dependencies {
     // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    implementation(platform(libs.kotlin.bom))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
+    implementation(libs.kotlin.stdlib)
 
     // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation(libs.kotlin.test.junit)
 
 {{#deps}}
     {{{.}}}

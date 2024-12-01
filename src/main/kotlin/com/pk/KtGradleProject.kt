@@ -15,7 +15,7 @@ class KtGradleProject(private val params: ProjectParams) {
     fun create() {
         val proj = File(params.location, params.artifactId)
         val gradlew = setupGradleWrapper(proj)
-        exec(dir = proj, cmd = listOf(gradlew, "init", "--dsl", "kotlin"), help = "please install gradle")
+        exec(dir = proj, cmd = listOf(gradlew, "init", "--overwrite", "--dsl", "kotlin"), help = "please install gradle")
 
         process(params.overlays, proj)
 
