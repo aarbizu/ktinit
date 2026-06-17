@@ -86,6 +86,7 @@ class KtGradleProject(
             ProcessExecutor()
                 .command(cmd)
                 .directory(dir)
+                .environment("JAVA_HOME", System.getProperty("java.home"))
                 .exitValueNormal()
                 .redirectOutput(System.out)
                 .redirectErrorAlsoTo(System.out)
