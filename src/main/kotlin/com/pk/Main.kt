@@ -108,7 +108,7 @@ fun dependencies(): List<Dependency> =
         Dependency("testRuntimeOnly", "org.junit.jupiter", "junit-jupiter-engine"),
         Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
         Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
-        Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-console"),
+        Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-launcher"),
         Dependency("implementation", "org.jetbrains.kotlinx", "kotlinx-cli"),
     )
 
