@@ -52,6 +52,7 @@ dependencies {
 
     testImplementation(libs.system.rules)
     testImplementation(libs.truth)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 group = "com.pk"
