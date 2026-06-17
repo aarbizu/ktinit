@@ -43,7 +43,6 @@ dependencies {
     implementation(libs.kotlinx.cli)
     implementation(libs.bundles.moshi)
     implementation(libs.bundles.slf4j)
-    implementation(libs.jsonpath)
     implementation(libs.zeroturnaround)
     implementation(libs.mustache)
     implementation(libs.okhttp)

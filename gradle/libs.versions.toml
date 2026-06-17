@@ -12,7 +12,6 @@ junit_platform = "6.1.0"
 kotlinx_cli = "0.3.6"
 moshi = "1.15.2"
 slf4j = "2.0.18"
-json_path = "3.0.0"
 zt_exec = "1.12"
 spotless = "8.7.0"
 versions = "0.54.0"
@@ -46,7 +45,6 @@ guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 
 # miscellaneous
-jsonpath = { group = "com.jayway.jsonpath", name = "json-path", version.ref = "json_path" }
 zeroturnaround = { group = "org.zeroturnaround", name = "zt-exec", version.ref = "zt_exec" }
 mustache = { group = "com.github.spullara.mustache.java", name = "compiler", version.ref = "mustache" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
