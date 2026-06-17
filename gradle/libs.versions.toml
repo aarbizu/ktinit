@@ -15,7 +15,7 @@ slf4j = "2.0.16"
 json_path = "2.9.0"
 zt_exec = "1.12"
 spotless = "6.25.0"
-versions = "0.51.0"
+versions = "0.54.0"
 
 [libraries]
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
