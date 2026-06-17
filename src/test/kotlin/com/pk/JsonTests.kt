@@ -12,7 +12,8 @@ class JsonTests {
     fun moshi() {
         val dependency = Dependency(scope = "implementation", group = "com.google.guava", artifact = "guava")
         val moshi =
-            Moshi.Builder()
+            Moshi
+                .Builder()
                 .add(KotlinJsonAdapterFactory())
                 .build()
         val adapter = moshi.adapter(Dependency::class.java)
@@ -34,7 +35,8 @@ class JsonTests {
                 Dependency(group = "com.google.truth", artifact = "truth"),
             )
         val moshi =
-            Moshi.Builder()
+            Moshi
+                .Builder()
                 .add(KotlinJsonAdapterFactory())
                 .build()
         val type = Types.newParameterizedType(List::class.java, Dependency::class.java)

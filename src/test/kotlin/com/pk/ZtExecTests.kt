@@ -25,8 +25,10 @@ class ZtExecTests {
         var exit = -1
         try {
             exit =
-                ProcessExecutor().command("lkasdjflsajf", "-version")
-                    .execute().exitValue
+                ProcessExecutor()
+                    .command("lkasdjflsajf", "-version")
+                    .execute()
+                    .exitValue
             fail()
         } catch (e: ProcessInitException) {
             assertThat(exit, `is`(-1))
@@ -38,14 +40,16 @@ class ZtExecTests {
     @Throws(Exception::class)
     fun testEnvironmentVars() {
         val env =
-            ProcessExecutor().command("env")
+            ProcessExecutor()
+                .command("env")
                 .environment("FOOBAR", "BAZ")
                 .readOutput(true)
                 .exitValueNormal()
                 .execute()
                 .outputUTF8()
         val returnedEnv =
-            Arrays.stream(env.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+            Arrays
+                .stream(env.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
                 .filter { s -> s.startsWith("FOOBAR=") }
                 .findFirst()
         assertTrue(returnedEnv.isPresent)
@@ -56,7 +60,11 @@ class ZtExecTests {
     @Throws(Exception::class)
     fun testNormalExitValue() {
         try {
-            ProcessExecutor().command("bash", "unknown-program").exitValueNormal().execute().exitValue
+            ProcessExecutor()
+                .command("bash", "unknown-program")
+                .exitValueNormal()
+                .execute()
+                .exitValue
             fail()
         } catch (e: InvalidExitValueException) {
             val exitValue = e.exitValue

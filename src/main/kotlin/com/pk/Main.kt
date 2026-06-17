@@ -33,8 +33,7 @@ fun main(args: Array<String>) {
             shortName = "d",
             fullName = "dep",
             description = "provide additional dependencies in the format <groupId>:<artifactId>[:version]",
-        )
-        .multiple()
+        ).multiple()
 
     val noArgs by parser
         .option(
@@ -42,8 +41,7 @@ fun main(args: Array<String>) {
             shortName = "n",
             fullName = "no-arg-parsing",
             description = "don't add command line arg parsing capabilities",
-        )
-        .default(false)
+        ).default(false)
 
     parser.parse(args)
 
@@ -78,8 +76,8 @@ fun main(args: Array<String>) {
     if (!currentDir) println("\nYou may use the project above or run `ktinit --help` to see more options.")
 }
 
-fun parseDependencies(deps: List<String>): List<Dependency> {
-    return deps.map {
+fun parseDependencies(deps: List<String>): List<Dependency> =
+    deps.map {
         val parts = it.split(":")
         when (parts.size) {
             2 -> Dependency(group = parts[0], artifact = parts[1])
@@ -87,7 +85,6 @@ fun parseDependencies(deps: List<String>): List<Dependency> {
             else -> throw Exception(it)
         }
     }
-}
 
 data class ProjectParams(
     val groupId: String,
@@ -136,7 +133,9 @@ fun buildOverlaysForSimpleProject(
 }
 
 // keeping these around for Mustache context keys
-enum class Option(val templateName: String) {
+enum class Option(
+    val templateName: String,
+) {
     GROUP_ID("groupId"),
     ARTIFACT_ID("artifactId"),
     MAIN_CLASS("mainClass"),

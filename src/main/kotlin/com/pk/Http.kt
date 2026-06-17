@@ -20,11 +20,15 @@ object Http {
                 r.isSuccessful,
                 r.code,
                 r.body.use { body ->
-                    body?.string() ?: ""
+                    body.string()
                 },
             )
         }
     }
 }
 
-data class MyHttpResponse(val successful: Boolean, val code: Int, val body: String)
+data class MyHttpResponse(
+    val successful: Boolean,
+    val code: Int,
+    val body: String,
+)
