@@ -11,11 +11,13 @@ import kotlin.system.exitProcess
 
 private const val EXIT_CODE_ERROR = 1
 
-class KtGradleProject(private val params: ProjectParams) {
+class KtGradleProject(
+    private val params: ProjectParams,
+) {
     fun create() {
         val proj = File(params.location, params.artifactId)
         val gradlew = setupGradleWrapper(proj)
-        exec(dir = proj, cmd = listOf(gradlew, "init", "--dsl", "kotlin"), help = "please install gradle")
+        exec(dir = proj, cmd = listOf(gradlew, "init", "--overwrite", "--dsl", "kotlin"), help = "please install gradle")
 
         process(params.overlays, proj)
 
@@ -84,6 +86,7 @@ class KtGradleProject(private val params: ProjectParams) {
             ProcessExecutor()
                 .command(cmd)
                 .directory(dir)
+                .environment("JAVA_HOME", System.getProperty("java.home"))
                 .exitValueNormal()
                 .redirectOutput(System.out)
                 .redirectErrorAlsoTo(System.out)
@@ -114,9 +117,7 @@ data class Dependency(
         }
     }
 
-    override fun toString(): String {
-        return "$scope(\"$group:$artifact:$version\")"
-    }
+    override fun toString(): String = "$scope(\"$group:$artifact:$version\")"
 }
 
 // not terribly exciting: just looks up the resource identified by fileName

@@ -31,6 +31,7 @@ class KtInitTests {
                             Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-engine"),
                             Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
                             Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
+                            Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-launcher"),
                         ),
                     ),
             )
@@ -62,6 +63,7 @@ class KtInitTests {
                             Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-engine"),
                             Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-api"),
                             Dependency("testImplementation", "org.junit.jupiter", "junit-jupiter-params"),
+                            Dependency("testRuntimeOnly", "org.junit.platform", "junit-platform-launcher"),
                         ),
                     ),
             )
