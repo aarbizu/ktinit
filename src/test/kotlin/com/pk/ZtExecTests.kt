@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.Test
 import org.zeroturnaround.exec.InvalidExitValueException
 import org.zeroturnaround.exec.ProcessExecutor
-import org.zeroturnaround.exec.ProcessInitException
+import java.io.IOException
 import java.util.Arrays
 
 /**
@@ -30,7 +30,7 @@ class ZtExecTests {
                     .execute()
                     .exitValue
             fail()
-        } catch (e: ProcessInitException) {
+        } catch (e: IOException) {
             assertThat(exit, `is`(-1))
             return
         }
